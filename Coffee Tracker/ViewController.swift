@@ -32,6 +32,11 @@ class ViewController: UIViewController {
         saveCaffeineSample(110)
         displayConfirmationAlert()
     }
+    
+    @IBAction func trackNespressoPod(_ sender: UIButton) {
+        saveCaffeineSample(80)
+        displayConfirmationAlert()
+    }
 
     func requestHealthKitAuthorization() {
         let caffeineType = HKQuantityType.quantityType(forIdentifier: .dietaryCaffeine)!
