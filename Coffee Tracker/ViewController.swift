@@ -19,22 +19,22 @@ class ViewController: UIViewController {
     }
 
     @IBAction func trackDripCoffee(_ sender: UIButton) {
-        saveCaffeineSample(75)
+        saveCaffeineSample(75, brewType: "Drip - 250ml")
         displayConfirmationAlert()
     }
 
     @IBAction func trackEspresso(_ sender: UIButton) {
-        saveCaffeineSample(140)
+        saveCaffeineSample(140, brewType: "Espresso Double - 40ml")
         displayConfirmationAlert()
     }
 
     @IBAction func trackAeroPress(_ sender: UIButton) {
-        saveCaffeineSample(110)
+        saveCaffeineSample(110, brewType: "AeroPress - 220ml")
         displayConfirmationAlert()
     }
     
     @IBAction func trackNespressoPod(_ sender: UIButton) {
-        saveCaffeineSample(80)
+        saveCaffeineSample(80, brewType: "Nespresso Pod - 60ml")
         displayConfirmationAlert()
     }
 
@@ -52,10 +52,10 @@ class ViewController: UIViewController {
         }
     }
 
-    func saveCaffeineSample(_ caffeineAmount: Double) {
+    func saveCaffeineSample(_ caffeineAmount: Double, brewType: String) {
         let caffeineType = HKQuantityType.quantityType(forIdentifier: .dietaryCaffeine)
         let caffeineAmount = HKQuantity(unit: HKUnit.gramUnit(with: .milli), doubleValue: caffeineAmount)
-        let caffeineSample = HKQuantitySample(type: caffeineType!, quantity: caffeineAmount, start: Date(), end: Date())
+        let caffeineSample = HKQuantitySample(type: caffeineType!, quantity: caffeineAmount, start: Date(), end: Date(), metadata: ["Type of brew" : brewType])
 
         healthStore.save(caffeineSample) { (success, error) in
             if success {
