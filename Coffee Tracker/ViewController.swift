@@ -18,6 +18,8 @@ class ViewController: UIViewController {
         requestHealthKitAuthorization()
     }
 
+
+    
     @IBAction func trackDripCoffee(_ sender: UIButton) {
         saveCaffeineSample(75, brewType: "Drip - 250ml")
         displayConfirmationAlert()
@@ -37,6 +39,11 @@ class ViewController: UIViewController {
         saveCaffeineSample(80, brewType: "Nespresso Pod - 60ml")
         displayConfirmationAlert()
     }
+    
+    @IBAction func trackGreenTea(_ sender: UIButton) {
+        saveCaffeineSample(35, brewType: "Green Tea - 250ml")
+        displayConfirmationAlert()
+    }
 
     func requestHealthKitAuthorization() {
         let caffeineType = HKQuantityType.quantityType(forIdentifier: .dietaryCaffeine)!
@@ -52,7 +59,7 @@ class ViewController: UIViewController {
         }
     }
 
-    func saveCaffeineSample(_ caffeineAmount: Double, brewType: String) {
+    func saveCaffeineSample(_ caffeineAmount: Double, brewType: String = "") {
         let caffeineType = HKQuantityType.quantityType(forIdentifier: .dietaryCaffeine)
         let caffeineAmount = HKQuantity(unit: HKUnit.gramUnit(with: .milli), doubleValue: caffeineAmount)
         let caffeineSample = HKQuantitySample(type: caffeineType!, quantity: caffeineAmount, start: Date(), end: Date(), metadata: ["Type of brew" : brewType])
