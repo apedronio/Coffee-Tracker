@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSHealthShareUsageDescription</key>
-	<string>To track caffeine Intake - Values are average.</string>
+	<string>This app will write average values for the listed beverages to Health app.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>To write on HealthKit the intake.</string>
 	<key>UIApplicationSceneManifest</key>
